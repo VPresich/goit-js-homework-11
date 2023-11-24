@@ -1,4 +1,4 @@
-import"./assets/modulepreload-polyfill-ec808ebb.js";/* empty css                      */import{S as a}from"./assets/vendor-c279a850.js";import{i as o}from"./assets/icons-aa1fc6ea.js";import{i as r}from"./assets/gallery-images-8dc32416.js";const l=({preview:e,description:t,original:i})=>`<li class="gallery-item">
+import"./assets/modulepreload-polyfill-ec808ebb.js";/* empty css                      */import{S as a}from"./assets/vendor-c279a850.js";import{i as o}from"./assets/icons-1adde502.js";import{i as r}from"./assets/gallery-images-8dc32416.js";const l=({preview:e,description:t,original:i})=>`<li class="gallery-item">
               <a class="gallery-link" href="${i}">
                 <img class="gallery-img"
                     src="${e}"
