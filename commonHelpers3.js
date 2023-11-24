@@ -1,0 +1,4 @@
+import"./assets/modulepreload-polyfill-ec808ebb.js";/* empty css                      */import{b as r}from"./assets/vendor-c279a850.js";import{c as s,K as c}from"./assets/create-gallery-bd47cadd.js";import{i as l}from"./assets/gallery-images-8dc32416.js";let t={};const i=document.querySelector(".gallery");s(l,i);i.addEventListener("click",m);function m(e){const o=e.target;if(!o.classList.contains("gallery-img"))return;e.preventDefault();const n={src:o.dataset.source,alt:o.alt,preview:o.src};d(n)}function d({src:e,alt:o}){t=r.create(`<div class="lightbox-modal">   
+        <img class="lightbox-image" src="${e}" alt="${o}"/>           
+    </div>`,{onShow:()=>{document.addEventListener("keydown",a)},onClose:()=>{document.removeEventListener("keydown",a)},closable:!0}),t.show()}function a(e){e.code===c&&t.close()}
+//# sourceMappingURL=commonHelpers3.js.map
