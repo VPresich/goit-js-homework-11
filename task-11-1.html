@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" type="image/svg+xml" href="/goit-js-homework-11/assets/favicon-c9e4afe2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VA home work JS 9</title>
-
+    <title>Module 9 Gallery-SimpleLightbox</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,6 +17,12 @@
       href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
     />
     
+    <script type="module" crossorigin src="/goit-js-homework-11/commonHelpers2.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-homework-11/assets/modulepreload-polyfill-ec808ebb.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-homework-11/assets/vendor-9310f15c.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-homework-11/assets/icons-bb323a37.js">
+    <link rel="stylesheet" href="/goit-js-homework-11/assets/vendor-fd638ea2.css">
+    <link rel="stylesheet" href="/goit-js-homework-11/assets/icons-6542dc8a.css">
     <link rel="stylesheet" href="/goit-js-homework-11/assets/styles-1bfe8eac.css">
   </head>
   <body>
@@ -47,12 +53,31 @@
   </div>
 </header>
 
-    <section class="section section-layout">
-  <div class="container home-page-container">
-    <h1 class="title-home">Домашня робота JS - 11</h1>
-    <h2 class="name-stud">Валентина Александрова</h2>
+    <section class="search-form-section">
+  <div class="search-form-container container">
+    <h2 class="search-form-title visually-hidden">Search form</h2>
+
+    <form class="search-form" autocomplete="off">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search images..."
+        autofocus
+      />
+      <button type="submit">Search</button>
+    </form>
   </div>
 </section>
 
+    <section>
+  <div class="container">
+    <h2 class="section-title visually-hidden">Gallery</h2>
+
+    <ul class="gallery"></ul>
+  </div>
+</section>
+
+
+    
   </body>
 </html>
