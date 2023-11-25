@@ -9,6 +9,7 @@ const refs = {
   buttonClose: document.querySelector('.close-button'),
   modalContent: document.querySelector('.modal-content'),
   modalClose: document.querySelector('#closeBtn'),
+  loader: document.querySelector('.loader'),
 };
 
 refs.gallery.addEventListener('click', onGalleryImageClick);
@@ -37,7 +38,11 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
   const frm = event.currentTarget;
   const searchStr = frm.search.value.trim();
-  insertCardsToGallery({ searchForm, galleryRef: refs.gallery });
+  insertCardsToGallery({
+    searchForm,
+    galleryRef: refs.gallery,
+    loaderRef: refs.loader,
+  });
 }
 
 function onGalleryImageClick(event) {

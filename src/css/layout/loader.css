@@ -1,0 +1,28 @@
+.loader {
+  display: none;
+  position: relative;
+  height: 12px;
+  width: 372px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--button-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.loader:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--button-bgr-color);
+  animation: 6s prog ease-in infinite;
+}
+
+@keyframes prog {
+  to {
+    width: 100%;
+  }
+}

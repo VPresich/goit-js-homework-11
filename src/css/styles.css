@@ -8,6 +8,6 @@
 @import url('./layout/gallery-cards.css');
 @import url('./layout/search-images-form.css');
 @import url('./layout/simple-lightbox-window.css');
-/* @import url('./layout/gallery.css'); */
 @import url('./layout/modal-window.css');
 @import url('./layout/slider.css');
+@import url('./layout/loader.css');
