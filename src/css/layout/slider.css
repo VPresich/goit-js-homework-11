@@ -107,7 +107,4 @@
 }
 
 @media screen and (min-width: 1112px) {
-  #closeBtn {
-    display: inline-flex;
-  }
 }

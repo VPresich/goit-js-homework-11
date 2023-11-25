@@ -1,14 +1,14 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import '../../css/layout/simple-lightbox-window.css'; // my styles for customizing
+import '../../css/layout/simple-lightbox-window.css';
 import iconsUrl from '../../img/icons.svg';
 
-import createGallery from './simple-lightbox-gallery.js';
-import images from '../data/gallery-images.js';
+import createGallery from '../common/create-cards-gallery.js';
+import cards from '../data/cards.js';
 
 const galleryRef = document.querySelector('.gallery');
-createGallery(images, galleryRef);
+createGallery(cards, galleryRef);
 
 new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -44,6 +44,4 @@ new SimpleLightbox('.gallery a', {
   showCounter: true,
   animationSlide: true,
   loop: true,
-  widthRatio: 0.85,
-  heightRatio: 0.9,
 });

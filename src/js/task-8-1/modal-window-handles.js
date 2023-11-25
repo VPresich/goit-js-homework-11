@@ -1,8 +1,7 @@
 import { KEY_CODE_ESC } from '../common/constants.js';
-import createGallery from '../common/create-gallery.js';
-import images from '../data/gallery-images.js';
+
 import ModalWindowSlider from './modal-window-slider.js';
-import insertCardsToGallery from '../task-11-1/insert-cards-to-gallery.js';
+import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 
 const refs = {
   gallery: document.querySelector('.gallery'),
@@ -12,11 +11,7 @@ const refs = {
   modalClose: document.querySelector('#closeBtn'),
 };
 
-createGallery(images, refs.gallery);
-// const searchStr = 'yellow flowers';
-// insertCardsToGallery(searchStr, refs.gallery);
-
-refs.gallery.addEventListener('click', onImageClick);
+refs.gallery.addEventListener('click', onGalleryImageClick);
 refs.buttonClose.addEventListener('click', onCloseModalWindow);
 refs.modalBackdrop.addEventListener('click', onBackdropClick);
 refs.modalClose.addEventListener('click', onCloseModalWindow);
@@ -35,16 +30,29 @@ const dataForSlider = {
   sliderContent: refs.modalContent,
 };
 
-function onImageClick(event) {
+const searchForm = document.querySelector('.search-form');
+searchForm.addEventListener('submit', onSearchFormSubmit);
+
+function onSearchFormSubmit(event) {
+  event.preventDefault();
+  const frm = event.currentTarget;
+  const searchStr = frm.search.value.trim();
+  insertCardsToGallery(searchStr, refs.gallery);
+}
+
+function onGalleryImageClick(event) {
+  event.preventDefault();
   const targetRef = event.target;
 
-  const isImageRef = targetRef.classList.contains('gallery-img');
+  const isImageRef =
+    targetRef.classList.contains('card-cover') ||
+    targetRef.classList.contains('card-cover-darkened');
+
   if (!isImageRef) {
     return;
   }
-  event.preventDefault();
 
-  const closestLi = targetRef.closest('.gallery-item');
+  const closestLi = targetRef.closest('li');
   const listImages = event.currentTarget.children;
   const indexList = Array.from(listImages).indexOf(closestLi);
 
@@ -56,6 +64,7 @@ function onImageClick(event) {
 
   openModalWindow();
 }
+
 function openModalWindow() {
   refs.modalBackdrop.classList.add('is-open');
   window.addEventListener('keydown', onWindowKeydown);
