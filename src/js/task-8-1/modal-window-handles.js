@@ -1,7 +1,8 @@
-import { KEY_CODE_ESC } from "../common/constants.js";
+import { KEY_CODE_ESC } from '../common/constants.js';
 import createGallery from '../common/create-gallery.js';
-import images from "../data/gallery-images.js";
-import ModalWindowSlider from "./modal-window-slider.js";
+import images from '../data/gallery-images.js';
+import ModalWindowSlider from './modal-window-slider.js';
+import insertCardsToGallery from '../task-11-1/insert-cards-to-gallery.js';
 
 const refs = {
   gallery: document.querySelector('.gallery'),
@@ -12,22 +13,24 @@ const refs = {
 };
 
 createGallery(images, refs.gallery);
+// const searchStr = 'yellow flowers';
+// insertCardsToGallery(searchStr, refs.gallery);
 
-refs.gallery.addEventListener("click", onImageClick);
-refs.buttonClose.addEventListener("click", onCloseModalWindow);
-refs.modalBackdrop.addEventListener("click", onBackdropClick);
-refs.modalClose.addEventListener("click", onCloseModalWindow);
+refs.gallery.addEventListener('click', onImageClick);
+refs.buttonClose.addEventListener('click', onCloseModalWindow);
+refs.modalBackdrop.addEventListener('click', onBackdropClick);
+refs.modalClose.addEventListener('click', onCloseModalWindow);
 
 let modalWindowSlider;
 const dataForSlider = {
   slidesPerPage: 1,
-  prevBtnId: "prevBtn",
-  nextBtnId: "nextBtn",
-  dotsContainerId: "sliderDots",
-  sliderContainerId: "modalContent",
-  slidesCounterId: "slidesCounter",
-  dotDefaultClass: "slider-dot",
-  dotActiveClass: "active-dot",
+  prevBtnId: 'prevBtn',
+  nextBtnId: 'nextBtn',
+  dotsContainerId: 'sliderDots',
+  sliderContainerId: 'modalContent',
+  slidesCounterId: 'slidesCounter',
+  dotDefaultClass: 'slider-dot',
+  dotActiveClass: 'active-dot',
   isDotContainText: false,
   sliderContent: refs.modalContent,
 };
@@ -50,16 +53,16 @@ function onImageClick(event) {
     currentSlide: indexList,
     elementsList: listImages,
   });
-  
+
   openModalWindow();
 }
 function openModalWindow() {
-  refs.modalBackdrop.classList.add('is-open');  
+  refs.modalBackdrop.classList.add('is-open');
   window.addEventListener('keydown', onWindowKeydown);
 }
 
 function onCloseModalWindow(event) {
-  window.removeEventListener('keydown', onWindowKeydown);  
+  window.removeEventListener('keydown', onWindowKeydown);
   refs.modalBackdrop.classList.remove('is-open');
   modalWindowSlider.destroy();
 }
@@ -75,4 +78,3 @@ function onBackdropClick(event) {
     onCloseModalWindow(event);
   }
 }
-

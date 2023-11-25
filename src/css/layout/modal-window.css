@@ -26,11 +26,11 @@
 }
 
 .modal-window {
-  max-width: 1440px;  
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   row-gap: 20px;
   padding: 0;
   background: rgba(46, 47, 66, 0.8);
@@ -61,27 +61,25 @@
 
 .close-button:hover,
 .close-button:focus {
-  background-color: var(--button-accent-bgr-color);
+  background-color: var(--button-hover-bgr-color);
 }
 
-.modal-content { 
-  max-width: 1112px; 
+.modal-content {
+  max-width: 1112px;
   height: 600px;
   object-fit: cover;
-  /* width: 100%;   */
 }
 
-@media screen and (min-width: 768px) {  
-  .modal-backdrop {   
+@media screen and (min-width: 768px) {
+  .modal-backdrop {
     padding-left: 80px;
-    padding-right: 80px;    
+    padding-right: 80px;
   }
 }
 
-@media screen and (min-width: 1112px) { 
-
-  .modal-backdrop {   
+@media screen and (min-width: 1112px) {
+  .modal-backdrop {
     padding-left: 164px;
-    padding-right: 164px;    
+    padding-right: 164px;
   }
 }

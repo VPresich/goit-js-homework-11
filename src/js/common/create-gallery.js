@@ -8,9 +8,16 @@ const imageMarkup = ({ preview, description, original }) => {
                />
             </a>
           </li>`;
+};
+
+const createImagesMarkup = images => {
+  return images.map(imageMarkup).join('');
+};
+
+function createGallery(images, galleryRef) {
+  const imagesMarkup = createImagesMarkup(images);
+  galleryRef.insertAdjacentHTML('beforeend', imagesMarkup);
 }
 
-export default function createGallery(images, galleryRef) {
-  const imagesMarkup = images.map(imageMarkup).join('');
-  galleryRef.insertAdjacentHTML("beforeend", imagesMarkup);
-}
+export { createImagesMarkup };
+export default createGallery;

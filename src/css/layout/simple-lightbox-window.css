@@ -30,20 +30,20 @@
 .sl-next:hover,
 .sl-prev:focus,
 .sl-next:focus {
-  fill: var(--button-accent-bgr-color);
+  fill: var(--button-hover-bgr-color);
   border: none;
 }
 
 .sl-next:disabled,
 .sl-prev:disabled {
   cursor: not-allowed;
-  fill: var(--button-disabled);
+  fill: var(--button-disable-color);
 }
 
 .sl-next:disabled:hover,
 .sl-prev:disabled:hover {
   cursor: not-allowed;
-  fill: var(--button-disabled);
+  fill: var(--button-disable-color);
 }
 
 .sl-current,
@@ -78,7 +78,7 @@
 
 .sl-close:hover .lightbox-close-icon,
 .sl-close:focus .lightbox-close-icon {
-  fill: var(--button-accent-bgr-color);
+  fill: var(--button-hover-bgr-color);
 }
 
 .sl-caption {
