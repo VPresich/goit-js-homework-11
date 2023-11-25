@@ -37,7 +37,7 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
   const frm = event.currentTarget;
   const searchStr = frm.search.value.trim();
-  insertCardsToGallery(searchStr, refs.gallery);
+  insertCardsToGallery({ searchForm, galleryRef: refs.gallery });
 }
 
 function onGalleryImageClick(event) {

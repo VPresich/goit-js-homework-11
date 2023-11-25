@@ -4,7 +4,8 @@ import fetchData from './fetch-data.js';
 import createCardsGallery from './create-cards-gallery.js';
 import { createErrMsg } from './create-msg.js';
 
-async function insertCardsToGallery(strForSearch, galleryRef, searchFrm) {
+async function insertCardsToGallery({ searchForm, galleryRef, modalWndRef }) {
+  const strForSearch = searchForm.search.value;
   const url =
     API_URL +
     `?key=${API_KEY}&q=${encodeURIComponent(
@@ -17,9 +18,10 @@ async function insertCardsToGallery(strForSearch, galleryRef, searchFrm) {
         createErrMsg(
           'Sorry, there are no images matching your search query. Please, try again!'
         );
-        searchFrm.search.value = '';
+        searchForm.search.value = '';
       }
       createCardsGallery(data.hits, galleryRef);
+      modalWndRef && modalWndRef.refresh();
     })
     .catch(error => {
       throw error;

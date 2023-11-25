@@ -5,11 +5,11 @@ import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 import '../../css/layout/simple-lightbox-window.css';
 import iconsUrl from '../../img/icons.svg';
 
-import createGallery from '../common/create-cards-gallery.js';
-import cards from '../data/cards.js';
+// import createGallery from '../common/create-cards-gallery.js';
+// import cards from '../data/cards.js';
 
 const galleryRef = document.querySelector('.gallery');
-createGallery(cards, galleryRef);
+// createGallery(cards, galleryRef);
 
 let slBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -45,8 +45,8 @@ function onFormSubmit(event) {
   const searchStr = frm.search.value.trim();
 
   try {
-    insertCardsToGallery(searchStr, galleryRef, searchForm);
-    slBox.refresh();
+    const options = { searchForm, galleryRef, modalWndRef: slBox };
+    insertCardsToGallery(options);
   } catch (error) {
     console.error('Error:', error);
   }
