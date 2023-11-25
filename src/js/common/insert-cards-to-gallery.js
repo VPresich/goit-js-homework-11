@@ -10,6 +10,7 @@ async function insertCardsToGallery({
   modalWndRef, // for SimpleLightBox
   loaderRef, // for loader
 }) {
+  const strForSearch = searchForm.search.value.trim();
   const apiParams = {
     key: API_KEY,
     q: encodeURIComponent(strForSearch),
