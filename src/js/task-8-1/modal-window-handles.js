@@ -4,6 +4,8 @@ import ModalWindowSlider from './modal-window-slider.js';
 import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 
 import createCardsGallery from '../common/create-cards-gallery.js';
+import getImages from '../common/get-images.js';
+
 import { createErrMsg } from '../common/create-msg.js';
 
 import { BGR_GALLERY, BGR_BODY } from '../common/constants.js';
@@ -38,17 +40,6 @@ const dataForSlider = {
   sliderContent: refs.modalContent,
 };
 
-function onSearchFormSubmit(event) {
-  event.preventDefault();
-  try {
-    refs.loader.style.display = 'block';
-    const searchStr = event.currentTarget.search.value.trim();
-    insertCardsToGallery(searchStr, refreshOnSuccess, refreshOnError);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
 function onGalleryImageClick(event) {
   event.preventDefault();
   const targetRef = event.target;
@@ -72,6 +63,23 @@ function onGalleryImageClick(event) {
   });
 
   openModalWindow();
+}
+
+function onSearchFormSubmit(event) {
+  event.preventDefault();
+  try {
+    const searchStr = event.currentTarget.search.value.trim();
+
+    getImages(searchStr)
+      .then(images => {
+        refreshOnSuccess(images);
+      })
+      .catch(error => {
+        refreshOnError(error);
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 function openModalWindow() {
