@@ -74,7 +74,6 @@ function refreshOnError(msg) {
   searchForm.search.value = '';
   loaderRef.style.display = 'none';
   createErrMsg(msg);
-  galleryRef.classList.remove('gallery-bgr');
   galleryRef.style.backgroundColor = BGR_BODY;
   galleryRef.innerHTML = '';
   slBox.refresh();

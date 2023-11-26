@@ -1,13 +1,12 @@
 import { KEY_CODE_ESC } from '../common/constants.js';
 
 import ModalWindowSlider from './modal-window-slider.js';
-import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 
+import insertCardsToGallery from '../common/insert-cards-to-gallery.js'; //For callbacks
 import createCardsGallery from '../common/create-cards-gallery.js';
-import getImages from '../common/get-images.js';
+import getImages from '../common/get-images.js'; // For promise
 
 import { createErrMsg } from '../common/create-msg.js';
-
 import { BGR_GALLERY, BGR_BODY } from '../common/constants.js';
 
 const refs = {
@@ -69,7 +68,7 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
   try {
     const searchStr = event.currentTarget.search.value.trim();
-
+    refs.loader.style.display = 'block';
     getImages(searchStr)
       .then(images => {
         refreshOnSuccess(images);

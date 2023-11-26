@@ -1,14 +1,6 @@
 const cardMarkup = card => {
-  const {
-    webformatURL,
-    largeImageURL,
-    previewURL,
-    tags,
-    likes,
-    views,
-    comments,
-    downloads,
-  } = card;
+  const { largeImageURL, previewURL, tags, likes, views, comments, downloads } =
+    card;
 
   return `<li class='card'> 
             <a class='card-link' href='${largeImageURL}'>                    

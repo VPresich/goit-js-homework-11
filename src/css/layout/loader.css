@@ -5,8 +5,8 @@
   left: 50%;
   bottom: 16px;
   transform: translate(-50%, 0%);
-  border-radius: 10px;
 }
+
 .loader {
   display: none;
   height: 12px;
