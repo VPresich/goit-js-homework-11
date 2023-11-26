@@ -6,6 +6,8 @@ import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 import createCardsGallery from '../common/create-cards-gallery.js';
 import { createErrMsg } from '../common/create-msg.js';
 
+import { BGR_GALLERY, BGR_BODY } from '../common/constants.js';
+
 const refs = {
   gallery: document.querySelector('.gallery'),
   modalBackdrop: document.querySelector('.modal-backdrop'),
@@ -99,11 +101,13 @@ function refreshOnError(msg) {
   refs.searchForm.search.value = '';
   refs.loader.style.display = 'none';
   createErrMsg(msg);
+  refs.gallery.style.backgroundColor = BGR_BODY;
   refs.gallery.innerHTML = '';
 }
 
 function refreshOnSuccess(data) {
   refs.searchForm.search.value = '';
   refs.loader.style.display = 'none';
+  refs.gallery.style.backgroundColor = BGR_GALLERY;
   createCardsGallery(data, refs.gallery);
 }

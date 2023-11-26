@@ -1,30 +1,35 @@
-import createCardsGallery from './create-cards-gallery.js';
+import { API_KEY, API_URL } from '../common/constants.js';
+import fetchData from './fetch-data.js';
 
-async function getImages(apiKey, searchTerm, galleryRef) {
-  const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(
-    searchTerm
-  )}&image_type=photo&orientation=horizontal&safesearch=true`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Custom-Header': 'custom value',
-    },
+//With promise
+
+async function getImages(strForSearch, onSuccess, onError) {
+  const apiParams = {
+    key: API_KEY,
+    q: encodeURIComponent(strForSearch),
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: true,
+    page: 1,
+    per_page: 20,
   };
-  fetch(url, options)
-    .then(response => response.json())
+
+  const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
+
+  fetchData(url, API_KEY)
     .then(data => {
-      console.log(data.hits);
-      if (!data.hits) {
-        createErrMsg(
-          'Sorry, there are no images matching your search query. Please, try again!'
-        );
-        return;
+      if (!data.hits.length) {
+        onError &&
+          onError(
+            'Sorry, there are no images matching your search query. Please, try again!'
+          );
+      } else {
+        onSuccess && onSuccess(data.hits);
       }
-      const cardsMarkup = createCardsGallery(data.hits, galleryRef);
     })
     .catch(error => {
-      console.error('Error fetching data:', error);
+      throw error;
     });
 }
+
 export default getImages;

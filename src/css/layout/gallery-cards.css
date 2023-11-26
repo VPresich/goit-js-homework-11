@@ -6,7 +6,10 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  background-color: var(--form-bgr-color);
+}
+
+.galery-bgr {
+  background-color: red; /*var(--form-bgr-color); */
 }
 
 .card {

@@ -1,6 +1,8 @@
 import { API_KEY, API_URL } from '../common/constants.js';
 import fetchData from './fetch-data.js';
 
+//With callbacks
+
 async function insertCardsToGallery(strForSearch, onSuccess, onError) {
   const apiParams = {
     key: API_KEY,

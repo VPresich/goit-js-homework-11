@@ -8,11 +8,13 @@ import iconsUrl from '../../img/icons.svg';
 import createCardsGallery from '../common/create-cards-gallery.js';
 import { createErrMsg } from '../common/create-msg.js';
 
+import { BGR_GALLERY, BGR_BODY } from '../common/constants.js';
+
 const galleryRef = document.querySelector('.gallery');
 const loaderRef = document.querySelector('.loader');
 const searchForm = document.querySelector('.search-form');
 
-searchForm.addEventListener('submit', onFormSubmit);
+searchForm.addEventListener('submit', onSearchFormSubmit);
 
 let slBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -38,7 +40,7 @@ let slBox = new SimpleLightbox('.gallery a', {
   loop: true,
 });
 
-function onFormSubmit(event) {
+function onSearchFormSubmit(event) {
   event.preventDefault();
   try {
     loaderRef.style.display = 'block';
@@ -53,6 +55,8 @@ function refreshOnError(msg) {
   searchForm.search.value = '';
   loaderRef.style.display = 'none';
   createErrMsg(msg);
+  galleryRef.classList.remove('gallery-bgr');
+  galleryRef.style.backgroundColor = BGR_BODY;
   galleryRef.innerHTML = '';
   slBox.refresh();
 }
@@ -60,6 +64,7 @@ function refreshOnError(msg) {
 function refreshOnSuccess(data) {
   searchForm.search.value = '';
   loaderRef.style.display = 'none';
+  galleryRef.style.backgroundColor = BGR_GALLERY;
   createCardsGallery(data, galleryRef);
   slBox.refresh();
 }
