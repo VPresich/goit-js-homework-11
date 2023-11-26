@@ -15,8 +15,7 @@ const cardMarkup = card => {
               <div class='card-cover-inner'>                
                   <img class='card-cover'
                       src='${previewURL}'
-                      alt='${tags}'  
-                      data-source='${largeImageURL}'                                      
+                      alt='${tags}'                                                          
                   />                                                  
                 <div class='card-cover-darkened'></div>
               </div>

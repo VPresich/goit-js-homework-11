@@ -5,8 +5,14 @@ import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 import '../../css/layout/simple-lightbox-window.css';
 import iconsUrl from '../../img/icons.svg';
 
+import createCardsGallery from '../common/create-cards-gallery.js';
+import { createErrMsg } from '../common/create-msg.js';
+
 const galleryRef = document.querySelector('.gallery');
 const loaderRef = document.querySelector('.loader');
+const searchForm = document.querySelector('.search-form');
+
+searchForm.addEventListener('submit', onFormSubmit);
 
 let slBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -32,17 +38,28 @@ let slBox = new SimpleLightbox('.gallery a', {
   loop: true,
 });
 
-const searchForm = document.querySelector('.search-form');
-searchForm.addEventListener('submit', onFormSubmit);
-
 function onFormSubmit(event) {
   event.preventDefault();
-
-  const frm = event.currentTarget;
   try {
-    const options = { searchForm, galleryRef, modalWndRef: slBox, loaderRef };
-    insertCardsToGallery(options);
+    loaderRef.style.display = 'block';
+    const searchStr = event.currentTarget.search.value.trim();
+    insertCardsToGallery(searchStr, refreshOnSuccess, refreshOnError);
   } catch (error) {
     console.error('Error:', error);
   }
+}
+
+function refreshOnError(msg) {
+  searchForm.search.value = '';
+  loaderRef.style.display = 'none';
+  createErrMsg(msg);
+  galleryRef.innerHTML = '';
+  slBox.refresh();
+}
+
+function refreshOnSuccess(data) {
+  searchForm.search.value = '';
+  loaderRef.style.display = 'none';
+  createCardsGallery(data, galleryRef);
+  slBox.refresh();
 }

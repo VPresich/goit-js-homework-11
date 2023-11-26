@@ -65,8 +65,10 @@
 }
 
 .modal-content {
-  width: 1112px;
-  height: 600px;
+  max-width: 1112px;
+  width: 100%;
+  max-height: 600px;
+  width: calc(100% - 40px);
   object-fit: cover;
 }
 

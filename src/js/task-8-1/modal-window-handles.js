@@ -3,6 +3,9 @@ import { KEY_CODE_ESC } from '../common/constants.js';
 import ModalWindowSlider from './modal-window-slider.js';
 import insertCardsToGallery from '../common/insert-cards-to-gallery.js';
 
+import createCardsGallery from '../common/create-cards-gallery.js';
+import { createErrMsg } from '../common/create-msg.js';
+
 const refs = {
   gallery: document.querySelector('.gallery'),
   modalBackdrop: document.querySelector('.modal-backdrop'),
@@ -10,12 +13,14 @@ const refs = {
   modalContent: document.querySelector('.modal-content'),
   modalClose: document.querySelector('#closeBtn'),
   loader: document.querySelector('.loader'),
+  searchForm: document.querySelector('.search-form'),
 };
 
 refs.gallery.addEventListener('click', onGalleryImageClick);
 refs.buttonClose.addEventListener('click', onCloseModalWindow);
 refs.modalBackdrop.addEventListener('click', onBackdropClick);
 refs.modalClose.addEventListener('click', onCloseModalWindow);
+refs.searchForm.addEventListener('submit', onSearchFormSubmit);
 
 let modalWindowSlider;
 const dataForSlider = {
@@ -31,18 +36,15 @@ const dataForSlider = {
   sliderContent: refs.modalContent,
 };
 
-const searchForm = document.querySelector('.search-form');
-searchForm.addEventListener('submit', onSearchFormSubmit);
-
 function onSearchFormSubmit(event) {
   event.preventDefault();
-  const frm = event.currentTarget;
-  const searchStr = frm.search.value.trim();
-  insertCardsToGallery({
-    searchForm,
-    galleryRef: refs.gallery,
-    loaderRef: refs.loader,
-  });
+  try {
+    refs.loader.style.display = 'block';
+    const searchStr = event.currentTarget.search.value.trim();
+    insertCardsToGallery(searchStr, refreshOnSuccess, refreshOnError);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 function onGalleryImageClick(event) {
@@ -91,4 +93,17 @@ function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onCloseModalWindow(event);
   }
+}
+
+function refreshOnError(msg) {
+  refs.searchForm.search.value = '';
+  refs.loader.style.display = 'none';
+  createErrMsg(msg);
+  refs.gallery.innerHTML = '';
+}
+
+function refreshOnSuccess(data) {
+  refs.searchForm.search.value = '';
+  refs.loader.style.display = 'none';
+  createCardsGallery(data, refs.gallery);
 }

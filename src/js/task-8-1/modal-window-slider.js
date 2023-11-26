@@ -21,8 +21,18 @@ class ModalWindowSlider extends SliderInterface {
   updateContent() {
     const slideNumber = super.getCurrentSlide();
     const imgRef = this.#elementsList[slideNumber].querySelector('img');
+    const aRef = this.#elementsList[slideNumber].querySelector('a');
 
-    this.#sliderContent.src = imgRef.dataset.source;
+    if (imgRef.dataset.source) {
+      this.#sliderContent.src = imgRef.dataset.source;
+    } else {
+      if (aRef.href) {
+        this.#sliderContent.src = aRef.href;
+      } else {
+        this.#sliderContent.src = imgRef.src;
+      }
+    }
+
     this.#sliderContent.alt = imgRef.alt;
   }
 }
