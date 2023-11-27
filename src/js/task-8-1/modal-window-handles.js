@@ -66,19 +66,15 @@ function onGalleryImageClick(event) {
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
-  try {
-    const searchStr = event.currentTarget.search.value.trim();
-    refs.loader.style.display = 'block';
-    getImages(searchStr)
-      .then(images => {
-        refreshOnSuccess(images);
-      })
-      .catch(error => {
-        refreshOnError(error);
-      });
-  } catch (error) {
-    console.log(error.message);
-  }
+  const searchStr = event.currentTarget.search.value.trim();
+  refs.loader.style.display = 'block';
+  getImages(searchStr)
+    .then(images => {
+      refreshOnSuccess(images);
+    })
+    .catch(error => {
+      refreshOnError(error);
+    });
 }
 
 function openModalWindow() {

@@ -57,17 +57,11 @@ let slBox = new SimpleLightbox('.gallery a', {
 // 2) With promises (Get data from server) ============================================
 function onSearchFormSubmit(event) {
   event.preventDefault();
-
-  try {
-    loaderRef.style.display = 'block';
-    const searchStr = event.currentTarget.search.value.trim();
-    getImages(searchStr)
-      .then(data => refreshOnSuccess(data))
-      .catch(msg => refreshOnError(msg));
-  } catch (error) {
-    console.error('Unknown Error:', error);
-    loaderRef.style.display = 'none';
-  }
+  loaderRef.style.display = 'block';
+  const searchStr = event.currentTarget.search.value.trim();
+  getImages(searchStr)
+    .then(data => refreshOnSuccess(data))
+    .catch(msg => refreshOnError(msg));
 }
 
 function refreshOnError(msg) {

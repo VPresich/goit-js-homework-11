@@ -3,7 +3,7 @@ import { API_KEY, API_URL } from '../common/constants.js';
 
 // With promise
 
-async function getImages(strForSearch) {
+function getImages(strForSearch) {
   const apiParams = {
     key: API_KEY,
     q: encodeURIComponent(strForSearch),
@@ -16,7 +16,7 @@ async function getImages(strForSearch) {
   const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
 
   return new Promise((resolve, reject) => {
-    fetchData(url, API_KEY)
+    fetchData(url)
       .then(data => {
         if (!data.hits.length) {
           reject(
