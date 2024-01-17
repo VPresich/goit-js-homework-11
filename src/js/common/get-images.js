@@ -1,5 +1,5 @@
 import fetchData from './fetch-data.js';
-import { API_KEY, API_URL } from '../common/constants.js';
+import { API_KEY, API_URL } from './constants.js';
 
 // With promise
 
@@ -13,8 +13,8 @@ function getImages(strForSearch) {
     page: 1,
     per_page: 20,
   };
-  const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
 
+  const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
   return new Promise((resolve, reject) => {
     fetchData(url)
       .then(data => {
@@ -26,7 +26,7 @@ function getImages(strForSearch) {
         resolve(data.hits);
       })
       .catch(error => {
-        reject(error);
+        reject(`Error fetching images: ${error.message}`);
       });
   });
 }
