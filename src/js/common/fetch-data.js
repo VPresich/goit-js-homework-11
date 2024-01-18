@@ -1,24 +1,15 @@
-// function fetchData(url) {
-//   return new Promise((resolve, reject) => {
-//     fetch(url)
-//       .then(response => {
-//         if (!response.ok) {
-//           reject(response.status);
-//         }
-//         resolve(response.json());
-//       })
-//       .catch(error => reject(error));
-//   });
-// }
-
-function fetchData(url) {
-  return new Promise((resolve, reject) => {
+const fetchData = url =>
+  new Promise((resolve, reject) =>
     fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          reject(new Error(`HTTP error, status: ${response.status}`));
+        }
+        return response.json();
+      })
       .then(json => resolve(json))
-      .catch(error => reject(error));
-  });
-}
+      .catch(error => reject(error))
+  );
 
 export default fetchData;
 
